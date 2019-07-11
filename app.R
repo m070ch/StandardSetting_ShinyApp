@@ -54,6 +54,10 @@ ui <- fluidPage( # Define the user interface, formatted as 'fluid' page
           div(
             # add table of the standard setting judgement results
             tableOutput("results"),
+            # add numeric input of the cut score decided on
+            # this moves one of the lines in thte visualization, 
+            # and changes the displayed pass rate
+            numericInput("decision", "Decision", 0),
           style = "font-size:150%") # set css property- fontsize 150% of norm
         ), 
         # create main panel with impact plot
