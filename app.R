@@ -123,6 +123,15 @@ server <- function(input, output) {
                                          hot_to_r(input$judgements))
   })
   
+  # Impact Tab
+  
+  # set the shiny component 'results' to render an rHandsontable
+  # which will be filled with the 'finalJudgements' reactive value object
+  # table is the judgements decision/impact table
+  output$results <- renderTable(
+    analyzeResults(values[['finalJudgements']], scores)
+  )
+  
 } # end server
 
 # Run the application 
