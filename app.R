@@ -46,7 +46,21 @@ ui <- fluidPage( # Define the user interface, formatted as 'fluid' page
         mainPanel(plotOutput("booklet")) # main panel and visual aid for
                                          # booklet
       ) # end sidebar layout for booklet tab
-    ) # end tab 'Booklet'
+    ), # end tab 'Booklet'
+    tabPanel("Impact", 
+      sidebarLayout( # set layout for impant tab (sidebar/main panel)
+        sidebarPanel( # create the sidebar panel
+          #create a div element, so we can add css properties
+          div(
+            # add table of the standard setting judgement results
+            tableOutput("results"),
+          style = "font-size:150%") # set css property- fontsize 150% of norm
+        ), 
+        # create main panel with impact plot
+        mainPanel(plotOutput("impact"))
+      ) # end sidebar layout for impact tab
+    ) # end tab 'Impact'
+    
   ) # end tabset
 ) # end ui
 
