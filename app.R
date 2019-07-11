@@ -136,6 +136,15 @@ server <- function(input, output) {
     analyzeResults(values[['finalJudgements']], scores)
   )
   
+  # set the shiny component 'impact' to render the plot returned from the 
+  # helper function 'impactPlot'- creates impact distribution plot
+  output$impact <- renderPlot(
+    if(nrow(values[['finalJudgements']]) > 0){
+      impactPlot(analyzeResults(values[['finalJudgements']], scores), scores,
+                 input$decision)
+    }
+  )
+  
 } # end server
 
 # Run the application 
