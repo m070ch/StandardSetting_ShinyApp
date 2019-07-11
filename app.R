@@ -58,6 +58,8 @@ ui <- fluidPage( # Define the user interface, formatted as 'fluid' page
             # this moves one of the lines in thte visualization, 
             # and changes the displayed pass rate
             numericInput("decision", "Decision", 0),
+            # add text with the pass rate based on the decision
+            textOutput("pass"),
           style = "font-size:150%") # set css property- fontsize 150% of norm
         ), 
         # create main panel with impact plot
@@ -144,6 +146,17 @@ server <- function(input, output) {
                  input$decision)
     }
   )
+  
+  # set the text that displays the pass rates based on the decision input
+  output$pass <- renderText(
+    # format as percent- round to whole number w/ '%' sign
+    paste(
+      # calculate pass rate as percent- (n scores >= cut / n all scores)*100, 
+      round(
+        (nrow(scores[which(scores$IRT_Score >= input$decision),] )/
+           nrow(scores))*100),
+      "%", sep = ""
+    ))
   
 } # end server
 
